@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import ItemForm from './components/ItemForm';
 import ItemList from './components/ItemList';
 
-const API_URL = 'http://localhost:5000/items';
+const API_URL = 'https://project-intern-backend.onrender.com/items';
 
 function App() {
   const [items, setItems] = useState([]);
