@@ -10,7 +10,7 @@ function App() {
   const loadItems = async () => {
     const res = await fetch(API_URL);
     const data = await res.json();
-    setItems(data);
+    setItems(data.items); // ✅ on prend le tableau "items" dans la réponse paginée
   };
 
   useEffect(() => {
