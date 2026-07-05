@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const AUTH_URL = 'http://localhost:5000/auth';
+const AUTH_URL = 'https://project-intern-backend.onrender.com/auth';
 
 function Login({ onLogin }) {
   const [email, setEmail] = useState('');
