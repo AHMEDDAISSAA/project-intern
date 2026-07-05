@@ -4,6 +4,10 @@ const cors = require('cors');
 const http = require('http');
 const { Server } = require('socket.io');
 const jwt = require('jsonwebtoken');
+const { ApolloServer } = require('@apollo/server');
+const { expressMiddleware } = require('@as-integrations/express5');
+const typeDefs = require('./graphql/typeDefs');
+const resolvers = require('./graphql/resolvers');
 
 const app = express();
 const connectDB = require('./config/db');
@@ -19,7 +23,6 @@ app.use('/items', itemsRoutes);
 const authRoutes = require('./routes/auth');
 app.use('/auth', authRoutes);
 
-// Création du serveur HTTP (nécessaire pour Socket.io)
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: { origin: "*" }
@@ -50,6 +53,14 @@ io.on('connection', (socket) => {
     console.log('Utilisateur déconnecté:', socket.user.email);
   });
 });
+
+async function startApolloServer() {
+  const apolloServer = new ApolloServer({ typeDefs, resolvers });
+  await apolloServer.start();
+  app.use('/graphql', express.json(), expressMiddleware(apolloServer));
+}
+
+startApolloServer();
 
 const PORT = process.env.PORT || 5000;
 server.listen(PORT, () => {
