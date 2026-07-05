@@ -3,6 +3,7 @@ const router = express.Router();
 const Item = require('../models/Item');
 const { authMiddleware, requireRole } = require('../middleware/authMiddleware');
 
+
 // GET tous les items (avec pagination)
 router.get('/', async (req, res) => {
   try {

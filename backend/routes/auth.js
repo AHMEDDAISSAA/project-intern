@@ -4,8 +4,6 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const JWT_SECRET = process.env.JWT_SECRET;
 
-const JWT_SECRET = 'ton_secret_super_securise'; // à mettre dans .env plus tard
-
 let users = [];
 let nextUserId = 1;
 
