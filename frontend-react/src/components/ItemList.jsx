@@ -2,9 +2,9 @@ function ItemList({ items, onDelete }) {
   return (
     <ul>
       {items.map((item) => (
-        <li key={item.id}>
+        <li key={item._id}>
           {item.name}
-          <button onClick={() => onDelete(item.id)}>Supprimer</button>
+          <button onClick={() => onDelete(item._id)}>Supprimer</button>
         </li>
       ))}
     </ul>
